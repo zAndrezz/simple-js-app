@@ -1,29 +1,43 @@
-let pokemonList;
+let pokemonRepository = (function() {
+    let pokemonList = [{
+            name: 'Raichu',
+            height: 0.8,
+            types: ['electric'],
+            generation: 1,
+        },
+        {
+            name: 'Keldeo',
+            height: 1.4,
+            types: ['fighting', 'water'],
+            generation: 5,
+        },
+        {
+            name: 'Ivysaur',
+            height: 1,
+            types: ['grass', 'poison'],
+            generation: 1,
+        },
+    ];
 
-pokemonList = [{
-        name: 'Raichu',
-        height: 0.8,
-        types: ['electric'],
-        generation: 1,
-    },
-    {
-        name: 'Keldeo',
-        height: 1.4,
-        types: ['fighting', 'water'],
-        generation: 5,
-    },
-    {
-        name: 'Ivysaur',
-        height: 1,
-        types: ['grass', 'poison'],
-        generation: 1,
-    },
-];
-
-for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].name + " (height :" + pokemonList[i].height + ")");
-    if (pokemonList[i].height > 1.3) {
-        document.write(" - Wow, that's big!");
+    function getAll() {
+        return pokemonList;
     }
-    document.write("<br><br>");
-}
+
+    function add(item) {
+        pokemonList.push(item);
+    }
+
+    return {
+        getAll: getAll,
+        add: add
+    };
+
+})();
+
+newPokemonList = pokemonRepository.getAll();
+
+newPokemonList.forEach((pokemon, i) => {
+    document.write("<p>" + 'name:' + newPokemonList[i].name + ' height: ' + newPokemonList[i].height + 'generation:' + newPokemonList[i].generation + "</p>");
+});
+
+document.write("<br><br>");
