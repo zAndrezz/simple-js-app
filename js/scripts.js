@@ -39,5 +39,3 @@ newPokemonList = pokemonRepository.getAll();
 newPokemonList.forEach((pokemon, i) => {
     document.write("<p>" + 'name:' + newPokemonList[i].name + ' height: ' + newPokemonList[i].height + 'generation:' + newPokemonList[i].generation + "</p>");
 });
-
-document.write("<br><br>");
