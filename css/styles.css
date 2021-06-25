@@ -4,3 +4,20 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+
+.button-class {
+    background-color: #4caf50;
+    border: none;
+    color: #ffffff;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 00.4s;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: black;
+    border: 2px solid green;
+}
