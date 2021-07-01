@@ -63,16 +63,21 @@ let pokemonRepository = (function() {
 
     function showDetails(item) {
         pokemonRepository.loadDetails(item).then(function() {
-            showModal();
+            showModal(item);
         });
     }
 
     let modalContainer = document.querySelector('#modal-container');
 
-    function showModal(item) {
+    function showModal(pokemon) {
         modalContainer.innerHTML = '';
         let modal = document.createElement('div');
         modal.classList.add('modal');
+        let imageContainer = document.createElement('div');
+        imageContainer.classList.add('img-container');
+        let pokeImage = document.createElement('img');
+        pokeImage.classList.add('PokeImage');
+        pokeImage.src = pokemon.imageUrl;
 
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
@@ -80,16 +85,28 @@ let pokemonRepository = (function() {
         closeButtonElement.addEventListener('click', hideModal);
 
         let titleElement = document.createElement('h1');
-        titleElement.innerText = item.name;
+        titleElement.innerText = pokemon.name;
 
         let contentElement = document.createElement('p');
-        contentElement.innerText = item.height;
+        contentElement.innerText = ("Height:" + pokemon.height);
+
+        let container = document.querySelector('#image-container');
+
+        // Create an <img> element
+        let myImage = document.createElement('img');
+
+        // setting `src` property to set the actual element's `src` attribute
+        // this also works on <img> elements selected by querySelector() method, it is not specific for <img> elements created with createElement() methods
+        myImage.src = 'https://picsum.photos/300/300';
+
+        container.appendChild(myImage);
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
         modal.appendChild(contentElement);
         modalContainer.appendChild(modal);
-
+        modal.appendChild(imageContainer);
+        imageContainer.appendChild(pokeImage);
 
         modalContainer.classList.add('is-visible');
     }
@@ -113,9 +130,8 @@ let pokemonRepository = (function() {
     });
 
     document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
+        showModal(item.imageUrlFront);
     });
-
 
     return {
         add: add,
