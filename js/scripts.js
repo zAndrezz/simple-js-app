@@ -20,9 +20,10 @@ let pokemonRepository = (function() {
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
         let listpokemon = document.createElement("li");
+        listpokemon.classList.add("group-list-item")
         let button = document.createElement("button");
         button.innerText = pokemon.name;
-        button.classList.add("button-class");
+        button.classList.add("btn-primary");
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         button.addEventListener("click", function(event) {
@@ -63,7 +64,7 @@ let pokemonRepository = (function() {
 
     function showDetails(item) {
         pokemonRepository.loadDetails(item).then(function() {
-            showModal(item);
+
         });
     }
 
@@ -76,8 +77,7 @@ let pokemonRepository = (function() {
         loadList: loadList,
         loadDetails: loadDetails,
         showDetails: showDetails,
-        showModal: showModal,
-        hideModal: hideModal
+
     };
 })();
 
