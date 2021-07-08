@@ -18,18 +18,32 @@ let pokemonRepository = (function() {
     }
 
     function addListItem(pokemon) {
-        let pokemonList = document.querySelector(".pokemon-list");
+        let modalTitle = document.querySelector(".modal-title");
+        modalTitle.innerText = pokemon.name
+        let modalBody = document.querySelector(".modal-body");
+        modalBody.innerText = ("Height:" + pokemon.height);
+        let myImage = document.createElement('img');
+        let container = document.querySelector('.modal-footer');
+        let pokeImage = document.createElement('img');
+        pokeImage.classList.add('PokeImage');
+        pokeImage.scr = pokemon.imageUrl;
+        let pokemonList = document.querySelector("#list-group");
         let listpokemon = document.createElement("li");
-        listpokemon.classList.add("group-list-item")
+        listpokemon.classList.add("list-group-item")
         let button = document.createElement("button");
         button.innerText = pokemon.name;
-        button.classList.add("btn-primary");
+        button.classList.add("btn-outline-primary");
         listpokemon.appendChild(button);
+        container.appendChild(myImage);
         pokemonList.appendChild(listpokemon);
+        button.appendChild(modalBody);
         button.addEventListener("click", function(event) {
             showDetails(pokemon);
+
         });
     }
+
+
 
     function loadList() {
         return fetch(apiUrl).then(function(response) {
@@ -48,6 +62,8 @@ let pokemonRepository = (function() {
         })
     }
 
+
+
     function loadDetails(item) {
         let url = item.detailsUrl;
         return fetch(url).then(function(response) {
@@ -62,10 +78,10 @@ let pokemonRepository = (function() {
         });
     }
 
-    function showDetails(item) {
-        pokemonRepository.loadDetails(item).then(function() {
 
-        });
+
+    function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function() {});
     }
 
 
@@ -77,7 +93,6 @@ let pokemonRepository = (function() {
         loadList: loadList,
         loadDetails: loadDetails,
         showDetails: showDetails,
-
     };
 })();
 
