@@ -1,5 +1,8 @@
 let pokemonRepository = (function() {
     let pokemonList = [];
+    let searchInput = document.querySelector("#searchIn");
+
+    // API Url to fetch data from
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function add(pokemon) {
@@ -111,7 +114,18 @@ let pokemonRepository = (function() {
         });
     }
 
+    searchInput.addEventListener('input', function() {
+        let listPokemon = document.querySelectorAll('.list-group-item');
+        let value = searchInput.value.toUpperCase();
 
+        listPokemon.forEach(function(pokemon) {
+            if (pokemon.innerText.toUpperCase().indexOf(value) > -1) {
+                pokemon.style.display = '';
+            } else {
+                pokemon.style.display = 'none';
+            }
+        })
+    });
 
     return {
         add: add,
